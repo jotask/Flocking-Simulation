@@ -5,6 +5,7 @@
 
 # Ignore submodule folder
 submodule/
+build/
 
 # User-specific files
 *.suo

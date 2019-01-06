@@ -16,12 +16,12 @@ namespace aiko
         static void initGlobalConfig(int argc, char** argv);
         static GlobalConfig it();
 
-        Config(const std::string resourcePath, const bool checkForBenchmarkOption);
+        Config(const std::string path, const bool checkForBenchmarkOption);
         ~Config() = default;
 
-        std::string getResourcePath() const;
+        std::string getResourcePath();
 
-        bool getCheckForBenchmarkOption() const;
+        bool getCheckForBenchmarkOption();
 
     private:
 

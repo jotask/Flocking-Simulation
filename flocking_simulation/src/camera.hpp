@@ -1,7 +1,7 @@
 #pragma once
 
 #include "transform.hpp"
-#include "module.hpp"
+#include "system.hpp"
 
 #include "Horde3D.h"
 
@@ -11,17 +11,19 @@ namespace aiko
     class Renderer;
     class Display;
 
-    class Camera : public Module
+    class Camera : public System
     {
     public:
 
-        Camera(Engine& engine, float fov = 45.0f, float near_plane = 0.1f, float far_plane = 1000.0f);
+        Camera(float fov = 45.0f, float near_plane = 0.1f, float far_plane = 1000.0f);
 
         virtual ~Camera() = default;
 
-        void                connect(ModuleConnector& moduleConnector) override;
-        bool                init();
-        bool                initResources() override;
+        void                connect(SystemConnector& systemConnectar, ModuleConnector& moduleConnector) override;
+        void                init() override;
+
+        virtual void        update(const TimeStep& step) override;
+        virtual void        postUpdate(const TimeStep& step) override;
 
         float               getFOV() const;
         float               getNearPlane() const;
@@ -43,6 +45,8 @@ namespace aiko
         float               m_fov;
         float               m_nearPlane;
         float               m_farPlane;
+
+        float               m_velocity; // Velocity for movement. Temporally until better system
 
     };
 

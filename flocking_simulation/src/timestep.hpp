@@ -20,6 +20,12 @@ namespace aiko
         // Let the Engine class have full access to this class
         friend class Engine;
 
+        void        init();
+        void        update();
+
+        int         m_frames = 0;
+        float       m_fps   = H3D_FPS_REFERENCE;
+
         float        m_delta;
         float        m_curFPS;
         double       m_startTime;

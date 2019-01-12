@@ -4,6 +4,11 @@ SET(CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/flocking_simulation/CMake/" ${CMAKE_M
 
 option(FORCE_DOWNLOAD_GLFW "Force linking to a downloaded version of GLFW" ON)
 find_package(GLFW)
+
+# GLM
+find_package(GLM REQUIRED)
+message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
+
 IF(GLFW_FOUND)
 
     file(GLOB FlockingSimulation_SRC
@@ -14,6 +19,8 @@ IF(GLFW_FOUND)
     include_directories(../submodule/Horde3D/Horde3D/Bindings/C++)
 
     include_directories(${GLFW_INCLUDE_DIR})
+
+    include_directories(${GLM_INCLUDE_DIRS})
 
     include_directories(FlockingSimulation_SRC)
 

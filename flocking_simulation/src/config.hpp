@@ -2,6 +2,7 @@
 
 #include "types.hpp"
 
+#include "Horde3D.h"
 #include <string>
 
 namespace aiko
@@ -20,8 +21,16 @@ namespace aiko
         ~Config() = default;
 
         std::string getResourcePath();
+        std::string getWindowTitle() { return "Aiko"; };
+
+        int getWindowWidth() { return 1024; };
+        int getWindowHeight() { return 576; };
 
         bool getCheckForBenchmarkOption();
+        bool isFullScreen() { return false; };
+        bool showCursorInScreen() { return false; };
+
+        H3DRenderDevice::List   getRenderInterface() { return H3DRenderDevice::OpenGL4; };
 
     private:
 

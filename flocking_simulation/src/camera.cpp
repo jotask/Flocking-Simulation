@@ -92,7 +92,7 @@ namespace aiko
     void Camera::postUpdate(const TimeStep & step)
     {
         // TODO
-        // Think a better way to do this
+        // Think of a better way to do this
         // post update call applyTransform that passed an hd3 node to apply a transform?
 
         // Set camera parameters

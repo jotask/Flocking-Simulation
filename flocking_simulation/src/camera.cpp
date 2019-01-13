@@ -2,6 +2,7 @@
 
 #include "engine.hpp"
 #include "renderer.hpp"
+#include "input.hpp"
 #include "module_connector.hpp"
 #include "system_connector.hpp"
 
@@ -16,7 +17,7 @@ namespace aiko
         , m_fov(fov)
         , m_nearPlane(nearPlane)
         , m_farPlane(farPlane)
-        , m_velocity(0.1f)
+        , m_velocity(0.001f)
     {
 
     }
@@ -24,6 +25,7 @@ namespace aiko
     void Camera::connect(SystemConnector& systemConnectar, ModuleConnector& moduleConnector)
     {
         m_renderer = moduleConnector.findModule<Renderer>();
+        m_input = moduleConnector.findModule<Input>();
     }
 
     void Camera::init()
@@ -46,42 +48,45 @@ namespace aiko
 
         // TODO temporary code
 
-        // #define H3D_RAD2DEG 57.324840764f
-        // #define H3D_DEG2RAD  0.017453292f
+        #define H3D_RAD2DEG 57.324840764f
+        #define H3D_DEG2RAD  0.017453292f
 
-        // float curVel = _velocity / delta;
-        // 
-        // if (isKeyDown(GLFW_KEY_LEFT_SHIFT)) curVel *= 5;	// LShift
-        // 
-        // if (isKeyDown(GLFW_KEY_W))
-        // {
-        //     // Move forward
-        //     _x -= sinf(H3D_DEG2RAD * (_ry)) * cosf(-H3D_DEG2RAD * (_rx)) * curVel;
-        //     _y -= sinf(-H3D_DEG2RAD * (_rx)) * curVel;
-        //     _z -= cosf(H3D_DEG2RAD * (_ry)) * cosf(-H3D_DEG2RAD * (_rx)) * curVel;
-        // }
-        // 
-        // if (isKeyDown(GLFW_KEY_S))
-        // {
-        //     // Move backward
-        //     _x += sinf(H3D_DEG2RAD * (_ry)) * cosf(-H3D_DEG2RAD * (_rx)) * curVel;
-        //     _y += sinf(-H3D_DEG2RAD * (_rx)) * curVel;
-        //     _z += cosf(H3D_DEG2RAD * (_ry)) * cosf(-H3D_DEG2RAD * (_rx)) * curVel;
-        // }
-        // 
-        // if (isKeyDown(GLFW_KEY_A))
-        // {
-        //     // Strafe left
-        //     _x += sinf(H3D_DEG2RAD * (_ry - 90)) * curVel;
-        //     _z += cosf(H3D_DEG2RAD * (_ry - 90)) * curVel;
-        // }
-        // 
-        // if (isKeyDown(GLFW_KEY_D))
-        // {
-        //     // Strafe right
-        //     _x += sinf(H3D_DEG2RAD * (_ry + 90)) * curVel;
-        //     _z += cosf(H3D_DEG2RAD * (_ry + 90)) * curVel;
-        // }
+        float curVel = m_velocity / step.getDelta();
+
+        auto& p = m_transform.m_position;
+        auto& r = m_transform.m_rotation;
+        
+        if (m_input->isKeyDown(GLFW_KEY_LEFT_SHIFT)) curVel *= 5;	// LShift
+        
+        if (m_input->isKeyDown(GLFW_KEY_W))
+        {
+            // Move forward
+            p.x -= sinf(H3D_DEG2RAD * (r.y)) * cosf(-H3D_DEG2RAD * (r.x)) * curVel;
+            p.y -= sinf(-H3D_DEG2RAD * (r.x)) * curVel;
+            p.z -= cosf(H3D_DEG2RAD * (r.y)) * cosf(-H3D_DEG2RAD * (r.x)) * curVel;
+        }
+        
+        if (m_input->isKeyDown(GLFW_KEY_S))
+        {
+            // Move backward
+            p.x += sinf(H3D_DEG2RAD * (r.y)) * cosf(-H3D_DEG2RAD * (r.x)) * curVel;
+            p.y += sinf(-H3D_DEG2RAD * (r.x)) * curVel;
+            p.z += cosf(H3D_DEG2RAD * (r.y)) * cosf(-H3D_DEG2RAD * (r.x)) * curVel;
+        }
+        
+        if (m_input->isKeyDown(GLFW_KEY_A))
+        {
+            // Strafe left
+            p.x += sinf(H3D_DEG2RAD * (r.y - 90)) * curVel;
+            p.z += cosf(H3D_DEG2RAD * (r.y - 90)) * curVel;
+        }
+        
+        if (m_input->isKeyDown(GLFW_KEY_D))
+        {
+            // Strafe right
+            p.x += sinf(H3D_DEG2RAD * (r.y + 90)) * curVel;
+            p.z += cosf(H3D_DEG2RAD * (r.y + 90)) * curVel;
+        }
     }
 
     void Camera::postUpdate(const TimeStep & step)

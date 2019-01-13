@@ -10,6 +10,7 @@ namespace aiko
 
     class Renderer;
     class Display;
+    class Input;
 
     class Camera : public System
     {
@@ -41,6 +42,7 @@ namespace aiko
 
         // Systems
         Renderer*           m_renderer;
+        Input*           m_input;
 
         float               m_fov;
         float               m_nearPlane;

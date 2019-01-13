@@ -27,6 +27,7 @@ namespace aiko
         const char*     getTitle() const;
         void            getSize(int &width, int &height) const;
         void            setTitle(const char* title);
+        void            setWindowCurost(const bool hasCursor);
         void            toggleFullScreen();
         void            showCursor(bool visible);
         void            swapBuffer();

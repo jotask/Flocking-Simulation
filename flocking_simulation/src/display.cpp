@@ -82,7 +82,7 @@ namespace aiko
             return false;
         }
         
-        glfwSetWindowUserPointer(m_winHandle, this);
+        glfwSetWindowUserPointer(m_winHandle, &m_engine);
         glfwMakeContextCurrent(m_winHandle);
         glfwSetInputMode(m_winHandle, GLFW_STICKY_KEYS, GL_TRUE);
         
@@ -117,7 +117,6 @@ namespace aiko
         }
     }
 
-
     void Display::setTitle(const char* title)
     {
         glfwSetWindowTitle(m_winHandle, title);
@@ -125,6 +124,10 @@ namespace aiko
         m_winTitle = title;
     }
 
+    void Display::setWindowCurost(const bool hasCursor)
+    {
+        m_winHasCursor = hasCursor;
+    }
 
     void Display::toggleFullScreen()
     {

@@ -44,7 +44,7 @@ namespace aiko
     void Camera::update(const TimeStep & step)
     {
 
-        // TODO temporally code
+        // TODO temporary code
 
         // #define H3D_RAD2DEG 57.324840764f
         // #define H3D_DEG2RAD  0.017453292f

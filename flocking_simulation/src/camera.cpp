@@ -91,9 +91,7 @@ namespace aiko
         // post update call applyTransform that passed an hd3 node to apply a transform?
 
         // Set camera parameters
-        const auto p = m_transform.m_position;
-        const auto r = m_transform.m_rotation;
-        h3dSetNodeTransform(m_cam, p.x, p.y, p.z, r.x, r.y, r.z, 1, 1, 1);
+        m_transform.applyTransform(m_cam);
     }
 
     float Camera::getFOV() const

@@ -7,6 +7,7 @@
 #include "renderer.hpp"
 #include "camera.hpp"
 #include "input.hpp"
+#include "world_system.hpp"
 #include "module_connector.hpp"
 #include "system_connector.hpp"
 
@@ -212,6 +213,7 @@ namespace aiko
     {
         // Register systems
         m_systems.push_back(std::make_shared<Camera>());
+        m_systems.push_back(std::make_shared<WorldSystem>());
 
         // call all modules to systems to the other stystems required
         ModuleConnector moduleConnector(m_modules);

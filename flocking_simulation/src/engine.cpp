@@ -92,18 +92,14 @@ namespace aiko
         return m_resourcePath.c_str();
     }
 
-    bool Engine::initResources()
+    template <class T>
+    bool Engine::initResources(T& collection)
     {
         // 1. Add resources
-        for (auto& m : m_modules)
+        for (auto& c : collection)
         {
             // TODO error checking
-            m->initResources();
-        }
-        for (auto& sys : m_systems)
-        {
-            // TODO error checking
-            sys->initResources();
+            c->initResources();
         }
 
         // 2. Load resources
@@ -228,6 +224,14 @@ namespace aiko
             system->connect(systemConnector, moduleConnector);
         }
 
+        // Init module resources
+        if (initResources<Systems>(m_systems) == false)
+        {
+            std::cout << "Unable to initialize system resources" << std::endl;
+            h3dutDumpMessages();
+            return false;
+        }
+
         // init all systems
         for (auto& system : m_systems)
         {
@@ -263,10 +267,10 @@ namespace aiko
         h3dSetOption(H3DOptions::ShadowMapSize, 2048);
         h3dSetOption(H3DOptions::DumpFailedShaders, 1);
 
-        // Init resources
-        if (initResources() == false)
+        // Init module resources
+        if (initResources<Modules>(m_modules) == false)
         {
-            std::cout << "Unable to initialize resources" << std::endl;
+            std::cout << "Unable to initialize modules resources" << std::endl;
             h3dutDumpMessages();
             return false;
         }
@@ -279,7 +283,6 @@ namespace aiko
         h3dutDumpMessages();
         return true;
     }
-
 
     void Engine::release()
     {

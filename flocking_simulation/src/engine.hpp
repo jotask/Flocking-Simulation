@@ -38,9 +38,6 @@ namespace aiko
         const char*     getResourcePath() const;
 
     protected:
-        virtual bool    initResources();
-        virtual void    releaseResources();
-
         virtual void    update(const TimeStep& step);
         virtual void    render();
         virtual void    finalize();
@@ -54,9 +51,13 @@ namespace aiko
         bool            init();
         bool            initModules();
         bool            initSystems();
+        void            releaseResources();
         void            connectModules(ModuleConnector& moduleConnector);
         void            connectSystems(SystemConnector& systemConnector);
         void            release();
+
+        template <class T>
+        bool            initResources(T& collection);
 
         Config          m_config;
 

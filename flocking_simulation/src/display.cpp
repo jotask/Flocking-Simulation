@@ -131,7 +131,7 @@ namespace aiko
 
     void Display::toggleFullScreen()
     {
-        if (!m_winFullScreen)
+        if (m_winFullScreen == false)
             getSize(m_initWinWidth, m_initWinHeight);
 
         // Toggle fullscreen mode

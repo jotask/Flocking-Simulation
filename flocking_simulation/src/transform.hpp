@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Horde3D.h"
-#include "glm/glm.hpp"
+#include "glm.hpp"
 
 namespace aiko
 {

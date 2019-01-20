@@ -3,7 +3,7 @@
 #include "display.hpp"
 #include "module_connector.hpp"
 
-#include  "glm/glm.hpp"
+#include  "glm.hpp"
 
 namespace aiko
 {

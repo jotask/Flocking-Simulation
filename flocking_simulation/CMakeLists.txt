@@ -11,7 +11,7 @@ message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
 
 IF(GLFW_FOUND)
 
-    file(GLOB FlockingSimulation_SRC
+    file(GLOB_RECURSE FlockingSimulation_SRC
     "src/*.hpp"
     "src/*.cpp"
     )

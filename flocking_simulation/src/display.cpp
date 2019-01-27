@@ -196,9 +196,9 @@ namespace aiko
     void Display::mouseMoveListener(GLFWwindow* win, double x, double y)
     {
         static auto prev = glm::vec2(x, y);
-        prev = { x, y };
         OnMouseMoveEvent evnt(static_cast<float>(x), static_cast<float>(y), prev.x, prev.y);
         EventSystem::it().sendEvent(evnt);
+        prev = { x, y };
     }
 
     void Display::mouseEnterListener(GLFWwindow* win, int entered)

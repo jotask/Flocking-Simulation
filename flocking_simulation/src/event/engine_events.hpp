@@ -5,16 +5,35 @@
 namespace aiko
 {
 
-#define DEFINE_EVENT(MSG)                                       \
-    class MSG : public Event                                    \
-    {                                                           \
-    public:                                                     \
-        MSG() = default;                                        \
-        virtual ~MSG() = default;                               \
-        virtual EventId     getId() const { return "MSG"; };    \
-    };                                                          \
+    class WindowCloseEvent : public Event
+    {
+    public:
+        WindowCloseEvent() = default;
+        virtual ~WindowCloseEvent() = default;
+        virtual EventId     getId() const { return "WindowCloseEvent"; }
+    };
 
-    DEFINE_EVENT(WindowCloseEvent);
-    DEFINE_EVENT(WindowResizeEvent);
+    class WindowResizeEvent : public Event
+    {
+    public:
+        WindowResizeEvent()
+            : width(-1)
+            , height(-1)
+        {
 
+        };
+
+        WindowResizeEvent(const int w, const int h)
+            : width(w)
+            , height(h)
+        {
+
+        };
+
+        virtual ~WindowResizeEvent() = default;
+        virtual EventId     getId() const { return "WindowResizeEvent"; }
+
+        const int width;
+        const int height;
+    };
 }

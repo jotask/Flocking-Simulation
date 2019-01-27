@@ -4,6 +4,7 @@
 #include <vector>
 #include <functional>
 #include <map>
+#include <iostream>
 
 #include "event.hpp"
 

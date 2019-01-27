@@ -3,6 +3,8 @@
 #include <GLFW/glfw3.h>
 
 #include "display.hpp"
+#include "event/engine_events.hpp"
+#include "event/event_dispatcher.hpp"
 
 namespace aiko
 {
@@ -34,8 +36,15 @@ namespace aiko
         }
     }
 
+    void Renderer::onWindowResize(Event & event)
+    {
+        const auto& msg = static_cast<const WindowResizeEvent&>(event);
+        resizeViewport(msg.width, msg.height);
+    }
+
     bool Renderer::init()
     {
+        EventSystem::it().bind<WindowResizeEvent>(this, &Renderer::onWindowResize);
         return true;
     }
 

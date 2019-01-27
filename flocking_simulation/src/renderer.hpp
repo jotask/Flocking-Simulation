@@ -9,6 +9,8 @@
 namespace aiko
 {
 
+    class Event;
+
     class Renderer : public Module
     {
     public:
@@ -21,12 +23,13 @@ namespace aiko
 
         H3DRes getPipelineRes();
 
-        void resizeViewport(const int width, const int height);
-
         bool init();
         bool initResources() final override;
 
     private:
+        void resizeViewport(const int width, const int height);
+
+        void            onWindowResize(Event& );
 
         int             m_renderInterface;
         int             m_curPipeline;

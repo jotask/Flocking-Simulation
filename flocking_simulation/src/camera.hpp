@@ -12,6 +12,8 @@ namespace aiko
     class Display;
     class Input;
 
+    class Event;
+
     class Camera : public System
     {
     public:
@@ -32,17 +34,19 @@ namespace aiko
 
         const H3DNode&      getCamera() const;
 
-        void                resizeViewport(const int width, const int height);
 
         Transform           m_transform;
 
     private:
 
+        void                onWindowResize(Event&);
+        void                resizeViewport(const int width, const int height);
+
         H3DNode             m_cam;
 
         // Systems
         Renderer*           m_renderer;
-        Input*           m_input;
+        Input*              m_input;
 
         float               m_fov;
         float               m_nearPlane;

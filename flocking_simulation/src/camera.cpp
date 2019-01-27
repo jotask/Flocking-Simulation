@@ -5,6 +5,8 @@
 #include "input.hpp"
 #include "module_connector.hpp"
 #include "system_connector.hpp"
+#include "event/engine_events.hpp"
+#include "event/event_dispatcher.hpp"
 
 namespace aiko
 {
@@ -41,6 +43,9 @@ namespace aiko
 
         m_transform.m_rotation.x =  7;
         m_transform.m_rotation.y = 15;
+
+        EventSystem::it().bind<WindowResizeEvent>(this, &Camera::onWindowResize);
+
     }
 
     void Camera::update(const TimeStep & step)
@@ -119,6 +124,12 @@ namespace aiko
         return m_cam;
     }
 
+    void Camera::onWindowResize(Event & event)
+    {
+        const auto& msg = static_cast<const WindowResizeEvent&>(event);
+        resizeViewport(msg.width, msg.height);
+    }
+
     void Camera::resizeViewport(const int width, const int height)
     {
         // Resize viewport
@@ -126,7 +137,7 @@ namespace aiko
         h3dSetNodeParamI(m_cam, H3DCamera::ViewportYI, 0);
         h3dSetNodeParamI(m_cam, H3DCamera::ViewportWidthI, width);
         h3dSetNodeParamI(m_cam, H3DCamera::ViewportHeightI, height);
-
+    
         // Set virtual camera parameters
         h3dSetupCameraView(m_cam, m_fov, (float)width / height, m_nearPlane, m_farPlane);
     }

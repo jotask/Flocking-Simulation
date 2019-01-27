@@ -39,8 +39,10 @@ namespace aiko
 
     private:
 
+        void                onMouseMove(Event&);
         void                onWindowResize(Event&);
         void                resizeViewport(const int width, const int height);
+
 
         H3DNode             m_cam;
 

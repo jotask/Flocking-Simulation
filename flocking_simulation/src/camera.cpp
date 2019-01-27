@@ -45,6 +45,7 @@ namespace aiko
         m_transform.m_rotation.y = 15;
 
         EventSystem::it().bind<WindowResizeEvent>(this, &Camera::onWindowResize);
+        EventSystem::it().bind<OnMouseMoveEvent>(this, &Camera::onMouseMove);
 
     }
 
@@ -122,6 +123,22 @@ namespace aiko
     const H3DNode& Camera::getCamera() const
     {
         return m_cam;
+    }
+
+    void Camera::onMouseMove(Event& event)
+    {
+        const auto& msg = static_cast<const OnMouseMoveEvent&>(event);
+
+        // TODO Rotate camera. Improve and investigate following lines
+
+        // float dx = msg.x - msg.prevX;
+        // float dy = msg.prevY - msg.y;
+        // 
+        // m_transform.m_rotation.y += dx;
+        // m_transform.m_rotation.x += dy;
+        // 
+        // if (m_transform.m_rotation.x > 90) m_transform.m_rotation.x = 90;
+        // if (m_transform.m_rotation.x < -90) m_transform.m_rotation.x = -90;
     }
 
     void Camera::onWindowResize(Event & event)

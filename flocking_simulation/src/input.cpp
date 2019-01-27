@@ -22,69 +22,12 @@ namespace aiko
 
     bool Input::init()
     {
-        // Set listeners
-        glfwSetWindowCloseCallback(m_display->getWindowHandle(), windowCloseListener);
-        glfwSetWindowSizeCallback(m_display->getWindowHandle(), windowResizeListener);
-        glfwSetKeyCallback(m_display->getWindowHandle(), keyPressListener);
-        glfwSetCursorPosCallback(m_display->getWindowHandle(), mouseMoveListener);
-        glfwSetCursorEnterCallback(m_display->getWindowHandle(), mouseEnterListener);
         return true;
     }
 
     bool Input::isKeyDown(int key) const
     {
         return glfwGetKey(m_display->getWindowHandle(), key) == GLFW_PRESS;
-    }
-
-    void Input::windowCloseListener(GLFWwindow* win)
-    {
-        if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        {
-            app->requestClosing();
-        }
-    }
-
-    void Input::windowResizeListener(GLFWwindow* win, int width, int height)
-    {
-        if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        {
-            app->resizeViewport();
-        }
-    }
-
-    void Input::keyPressListener(GLFWwindow* win, int key, int scancode, int action, int mods)
-    {
-        if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        {
-            if (auto* input = app->m_input)
-            {
-                input->keyEventHandler(key, scancode, action, mods);
-            }
-        }
-    }
-
-    void Input::mouseMoveListener(GLFWwindow* win, double x, double y)
-    {
-        static auto prev = glm::vec2(x, y);
-        if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        {
-            if (auto* input = app->m_input)
-            {
-                input->mouseMoveHandler(static_cast<float>(x), static_cast<float>(y), prev.x, prev.y);
-            }
-            prev = { x, y };
-        }
-    }
-
-    void Input::mouseEnterListener(GLFWwindow* win, int entered)
-    {
-        if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        {
-            if (auto* display = app->m_display)
-            {
-                display->setWindowCurost(entered != 0);
-            }
-        }
     }
 
     void Input::keyEventHandler(int key, int scancode, int action, int mods)

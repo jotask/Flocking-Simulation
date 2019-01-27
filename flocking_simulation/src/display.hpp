@@ -32,6 +32,13 @@ namespace aiko
         void            showCursor(bool visible);
         void            swapBuffer();
 
+        // GLFW listeners.
+        static void     windowCloseListener(GLFWwindow* win);
+        static void     windowResizeListener(GLFWwindow* win, int width, int height);
+        static void     keyPressListener(GLFWwindow* win, int key, int scancode, int action, int mods);
+        static void     mouseMoveListener(GLFWwindow* win, double x, double y);
+        static void     mouseEnterListener(GLFWwindow* win, int entered);
+
         // System
         Renderer*       m_renderer;
 

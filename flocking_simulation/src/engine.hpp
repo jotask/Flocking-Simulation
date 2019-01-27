@@ -12,6 +12,8 @@
 #include "system.hpp"
 #include "timestep.hpp" // Added in header to avoid include this file in any inheritance.
 
+#include "event/engine_events.hpp"
+
 namespace aiko
 {
 
@@ -58,6 +60,9 @@ namespace aiko
 
         template <class T>
         bool            initResources(T& collection);
+
+        // Events
+        void            onWindowClose(Event& ent);
 
         Config          m_config;
 

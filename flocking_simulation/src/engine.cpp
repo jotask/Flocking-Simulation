@@ -10,6 +10,7 @@
 #include "world_system.hpp"
 #include "module_connector.hpp"
 #include "system_connector.hpp"
+#include "event/event_dispatcher.hpp"
 
 // Horde
 #include "Horde3DUtils.h"
@@ -249,6 +250,11 @@ namespace aiko
 
         release();
 
+        // bind to events
+        {
+            EventSystem::it().bind<WindowCloseEvent>(this, &Engine::onWindowClose);
+        }
+
         initModules();
 
         // Initialize engine
@@ -297,6 +303,11 @@ namespace aiko
             // Release display
             m_display->release();
         }
+    }
+
+    void Engine::onWindowClose(Event & ent)
+    {
+        requestClosing();
     }
 
     Config& Engine::getConfig()

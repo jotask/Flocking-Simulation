@@ -4,6 +4,8 @@
 #include "config.hpp"
 #include "renderer.hpp"
 #include "module_connector.hpp"
+#include "event/engine_events.hpp"
+#include "event/event_dispatcher.hpp"
 
 #include "Horde3D.h"
 #include "Horde3DUtils.h"
@@ -93,6 +95,13 @@ namespace aiko
         // Disable vertical synchronization
         glfwSwapInterval(0);
 
+        // Set listeners
+        glfwSetWindowCloseCallback(m_winHandle, windowCloseListener);
+        glfwSetWindowSizeCallback(m_winHandle, windowResizeListener);
+        glfwSetKeyCallback(m_winHandle, keyPressListener);
+        glfwSetCursorPosCallback(m_winHandle, mouseMoveListener);
+        glfwSetCursorEnterCallback(m_winHandle, mouseEnterListener);
+
         return true;
     }
 
@@ -161,6 +170,55 @@ namespace aiko
             glfwDestroyWindow(m_winHandle);
             m_winHandle = 0;
         }
+    }
+
+    void Display::windowCloseListener(GLFWwindow* win)
+    {
+        WindowCloseEvent even;
+        aiko::EventSystem::it().sendEvent(even);
+    }
+
+    void Display::windowResizeListener(GLFWwindow* win, int width, int height)
+    {
+        if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
+        {
+            app->resizeViewport();
+        }
+    }
+
+    void Display::keyPressListener(GLFWwindow* win, int key, int scancode, int action, int mods)
+    {
+        // if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
+        // {
+        //     if (auto* input = app->m_input)
+        //     {
+        //         input->keyEventHandler(key, scancode, action, mods);
+        //     }
+        // }
+    }
+
+    void Display::mouseMoveListener(GLFWwindow* win, double x, double y)
+    {
+        // static auto prev = glm::vec2(x, y);
+        // if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
+        // {
+        //     if (auto* input = app->m_input)
+        //     {
+        //         input->mouseMoveHandler(static_cast<float>(x), static_cast<float>(y), prev.x, prev.y);
+        //     }
+        //     prev = { x, y };
+        // }
+    }
+
+    void Display::mouseEnterListener(GLFWwindow* win, int entered)
+    {
+        // if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
+        // {
+        //     if (auto* display = app->m_display)
+        //     {
+        //         display->setWindowCurost(entered != 0);
+        //     }
+        // }
     }
 
 

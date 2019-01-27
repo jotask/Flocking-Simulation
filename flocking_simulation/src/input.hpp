@@ -24,13 +24,6 @@ namespace aiko
 
     private:
 
-        // GLFW listeners.
-        static void     windowCloseListener(GLFWwindow* win);
-        static void     windowResizeListener(GLFWwindow* win, int width, int height);
-        static void     keyPressListener(GLFWwindow* win, int key, int scancode, int action, int mods);
-        static void     mouseMoveListener(GLFWwindow* win, double x, double y);
-        static void     mouseEnterListener(GLFWwindow* win, int entered);
-
         void            keyEventHandler(int key, int scancode, int action, int mods);
         void            mouseMoveHandler(float x, float y, float prev_x, float prev_y);
 

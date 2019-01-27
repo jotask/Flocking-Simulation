@@ -47,7 +47,7 @@ namespace aiko
 
         // Make this class friend for now
         // This is because we are receving event in stat methogs
-        friend class Input;
+        friend class Display;
 
         bool            init();
         bool            initModules();

@@ -3,12 +3,15 @@
 #include "engine.hpp"
 #include "config.hpp"
 #include "renderer.hpp"
+#include "input.hpp"
 #include "module_connector.hpp"
 #include "event/engine_events.hpp"
 #include "event/event_dispatcher.hpp"
 
 #include "Horde3D.h"
 #include "Horde3DUtils.h"
+
+#include "glm.hpp"
 
 #include <string>
 #include <iostream>
@@ -186,26 +189,16 @@ namespace aiko
 
     void Display::keyPressListener(GLFWwindow* win, int key, int scancode, int action, int mods)
     {
-        // if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        // {
-        //     if (auto* input = app->m_input)
-        //     {
-        //         input->keyEventHandler(key, scancode, action, mods);
-        //     }
-        // }
+        OnKeyPressedEvent evnt(key, scancode, action, mods);
+        EventSystem::it().sendEvent(evnt);
     }
 
     void Display::mouseMoveListener(GLFWwindow* win, double x, double y)
     {
-        // static auto prev = glm::vec2(x, y);
-        // if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        // {
-        //     if (auto* input = app->m_input)
-        //     {
-        //         input->mouseMoveHandler(static_cast<float>(x), static_cast<float>(y), prev.x, prev.y);
-        //     }
-        //     prev = { x, y };
-        // }
+        static auto prev = glm::vec2(x, y);
+        prev = { x, y };
+        OnMouseMoveEvent evnt(static_cast<float>(x), static_cast<float>(y), prev.x, prev.y);
+        EventSystem::it().sendEvent(evnt);
     }
 
     void Display::mouseEnterListener(GLFWwindow* win, int entered)

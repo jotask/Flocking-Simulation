@@ -10,6 +10,8 @@ namespace aiko
     // Forward declaration
     class Display;
 
+    class Event;
+
     class Input : public Module
     {
     public:
@@ -24,8 +26,8 @@ namespace aiko
 
     private:
 
-        void            keyEventHandler(int key, int scancode, int action, int mods);
-        void            mouseMoveHandler(float x, float y, float prev_x, float prev_y);
+        void            onKeyEventHandler(Event&);
+        void            onMouseMoveHandler(Event&);
 
         Display*        m_display;
 

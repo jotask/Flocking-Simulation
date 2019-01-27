@@ -3,6 +3,9 @@
 #include "display.hpp"
 #include "module_connector.hpp"
 
+#include "event/engine_events.hpp"
+#include "event/event_dispatcher.hpp"
+
 #include  "glm.hpp"
 
 namespace aiko
@@ -22,6 +25,8 @@ namespace aiko
 
     bool Input::init()
     {
+        EventSystem::it().bind<OnKeyPressedEvent>(this, &Input::onKeyEventHandler);
+        EventSystem::it().bind<OnMouseMoveEvent>(this, &Input::onMouseMoveHandler);
         return true;
     }
 
@@ -30,16 +35,19 @@ namespace aiko
         return glfwGetKey(m_display->getWindowHandle(), key) == GLFW_PRESS;
     }
 
-    void Input::keyEventHandler(int key, int scancode, int action, int mods)
+    void Input::onKeyEventHandler(Event& event)
     {
-        if (action != GLFW_PRESS)
+        const auto& msg = static_cast<const OnKeyPressedEvent&>(event);
+
+        if (msg.action != GLFW_PRESS)
             return;
 
-        switch (key)
+        switch (msg.key)
         {
         case GLFW_KEY_ESCAPE:
         {
-            m_engine.requestClosing();
+            WindowCloseEvent event;
+            EventSystem::it().sendEvent(event);
         }
         break;
         
@@ -53,10 +61,11 @@ namespace aiko
         }
     }
 
-    void Input::mouseMoveHandler(float x, float y, float prev_x, float prev_y)
+    void Input::onMouseMoveHandler(Event& event)
     {
-        const auto dx = x - prev_x;
-        const auto dy = prev_y - y;
+        const auto& msg = static_cast<const OnMouseMoveEvent&>(event);
+        const auto dx = msg.x - msg.prevX;
+        const auto dy = msg.prevY - msg.y;
     }
 
 }

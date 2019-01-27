@@ -47,4 +47,25 @@ namespace aiko
         const bool entered;
     };
 
+    class OnKeyPressedEvent : public Event
+    {
+    public:
+        OnKeyPressedEvent() = default;
+        OnKeyPressedEvent(int key, int scancode, int action, int mods) : key(key), scancode(scancode), action(action), mods(mods) {  };
+        virtual ~OnKeyPressedEvent() = default;
+        virtual EventId     getId() const { return "OnKeyPressedEvent"; }
+        int key; int scancode; int action; int mods;
+    };
+
+    class OnMouseMoveEvent : public Event
+    {
+    public:
+        OnMouseMoveEvent() = default;
+        OnMouseMoveEvent(float x, float y, float prevX, float prevY) : x(x), y(y), prevX(prevX), prevY(prevY) {  };
+        virtual ~OnMouseMoveEvent() = default;
+        virtual EventId     getId() const { return "OnMouseMoveEvent"; }
+        float x; float y;
+        float prevX; float prevY;
+    };
+
 }

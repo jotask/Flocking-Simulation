@@ -39,6 +39,8 @@ namespace aiko
         static void     mouseMoveListener(GLFWwindow* win, double x, double y);
         static void     mouseEnterListener(GLFWwindow* win, int entered);
 
+        void            simulateResizeEvent();
+
         // System
         Renderer*       m_renderer;
 

@@ -36,4 +36,15 @@ namespace aiko
         const int width;
         const int height;
     };
+
+    class OnMouseEnterEvent : public Event
+    {
+    public:
+        OnMouseEnterEvent() : entered(false) {};
+        OnMouseEnterEvent(const bool enter) : entered(enter) {};
+        virtual ~OnMouseEnterEvent() = default;
+        virtual EventId     getId() const { return "OnMouseEnterEvent"; }
+        const bool entered;
+    };
+
 }

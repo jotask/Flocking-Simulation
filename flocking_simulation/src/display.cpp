@@ -180,10 +180,8 @@ namespace aiko
 
     void Display::windowResizeListener(GLFWwindow* win, int width, int height)
     {
-        if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        {
-            app->resizeViewport();
-        }
+        WindowResizeEvent even(width, height);
+        aiko::EventSystem::it().sendEvent(even);
     }
 
     void Display::keyPressListener(GLFWwindow* win, int key, int scancode, int action, int mods)
@@ -212,15 +210,18 @@ namespace aiko
 
     void Display::mouseEnterListener(GLFWwindow* win, int entered)
     {
-        // if (Engine* const app = static_cast<Engine*>(glfwGetWindowUserPointer(win)))
-        // {
-        //     if (auto* display = app->m_display)
-        //     {
-        //         display->setWindowCurost(entered != 0);
-        //     }
-        // }
+        OnMouseEnterEvent evnt(entered != 0);
+        EventSystem::it().sendEvent(evnt);
     }
 
+    void Display::simulateResizeEvent()
+    {
+        int width = -1;
+        int height = -1;
+        getSize(width, height);
+        WindowResizeEvent evnt(width, height);
+        EventSystem::it().sendEvent(evnt);
+    }
 
 }
 

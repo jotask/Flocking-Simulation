@@ -163,15 +163,6 @@ namespace aiko
         m_display->swapBuffer();
     }
 
-    void Engine::resizeViewport()
-    {
-        int width = -1;
-        int height = -1;
-        m_display->getSize(width, height);
-        m_camera->resizeViewport(width, height);
-        m_renderer->resizeViewport(width, height);
-    }
-
     bool Engine::initModules()
     {
 
@@ -284,7 +275,7 @@ namespace aiko
         initSystems();
 
         // Setup camera and resize buffers
-        resizeViewport();
+        m_display->simulateResizeEvent();
 
         h3dutDumpMessages();
         return true;

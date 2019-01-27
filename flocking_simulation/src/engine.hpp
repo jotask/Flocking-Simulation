@@ -34,7 +34,6 @@ namespace aiko
 
         int             run();
         void            requestClosing();
-        void            resizeViewport();
 
         Config &        getConfig();
         const char*     getResourcePath() const;

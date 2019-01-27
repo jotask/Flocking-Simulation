@@ -11,6 +11,7 @@
 #include "module_connector.hpp"
 #include "system_connector.hpp"
 #include "event/event_dispatcher.hpp"
+#include "entity/entity_system.hpp"
 
 // Horde
 #include "Horde3DUtils.h"
@@ -200,6 +201,7 @@ namespace aiko
     bool Engine::initSystems()
     {
         // Register systems
+        m_systems.push_back(std::make_shared<EntitySystem>());
         m_systems.push_back(std::make_shared<Camera>());
         m_systems.push_back(std::make_shared<WorldSystem>());
 

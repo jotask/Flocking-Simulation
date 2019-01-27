@@ -61,11 +61,16 @@ namespace aiko
     {
     public:
         OnMouseMoveEvent() = default;
-        OnMouseMoveEvent(float x, float y, float prevX, float prevY) : x(x), y(y), prevX(prevX), prevY(prevY) {  };
+        OnMouseMoveEvent(float x, float y, float prevX, float prevY) : x(x), y(y), prevX(prevX), prevY(prevY)
+        {
+            dx = x - prevX;
+            dy = prevY - y;
+        };
         virtual ~OnMouseMoveEvent() = default;
         virtual EventId     getId() const { return "OnMouseMoveEvent"; }
         float x; float y;
         float prevX; float prevY;
+        float dx, dy;
     };
 
 }

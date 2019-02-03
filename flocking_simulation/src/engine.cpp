@@ -12,6 +12,7 @@
 #include "system_connector.hpp"
 #include "event/event_dispatcher.hpp"
 #include "entity/entity_system.hpp"
+#include "asset_system.hpp"
 
 // Horde
 #include "Horde3DUtils.h"
@@ -204,6 +205,7 @@ namespace aiko
         m_systems.push_back(std::make_shared<EntitySystem>());
         m_systems.push_back(std::make_shared<Camera>());
         m_systems.push_back(std::make_shared<WorldSystem>());
+        m_systems.push_back(std::make_shared<AssetsSystem>());
 
         // call all modules to systems to the other stystems required
         ModuleConnector moduleConnector(m_modules);

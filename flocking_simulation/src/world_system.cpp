@@ -3,6 +3,8 @@
 #include "module_connector.hpp"
 #include "system_connector.hpp"
 
+#include "asset_system.hpp"
+
 namespace aiko
 {
 
@@ -16,7 +18,7 @@ namespace aiko
 
     void WorldSystem::connect(SystemConnector& systemConnectar, ModuleConnector& moduleConnector)
     {
-
+        m_assetSystem = systemConnectar.findSystem<AssetsSystem>();
     }
 
     void WorldSystem::init()
@@ -40,10 +42,10 @@ namespace aiko
         // TODO Improve
 
         // Environment
-        H3DRes envRes = h3dAddResource(H3DResTypes::SceneGraph, "models/sphere/sphere.scene.xml", 0);
+        const auto envRes = m_assetSystem->loadResource("models/sphere/sphere.scene.xml", H3DResTypes::SceneGraph);
 
         // Shader for deferred shading
-        H3DRes lightMatRes = h3dAddResource(H3DResTypes::Material, "materials/light.material.xml", 0);
+        const auto lightMatRes = m_assetSystem->loadResource("materials/light.material.xml", H3DResTypes::Material);
 
         m_resources.push_back(envRes);
         m_resources.push_back(lightMatRes);

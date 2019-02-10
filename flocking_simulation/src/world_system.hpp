@@ -12,6 +12,8 @@
 namespace aiko
 {
 
+    class AssetsSystem;
+
     class WorldSystem : public System
     {
     public:
@@ -35,6 +37,8 @@ namespace aiko
 
         using Lights        = std::vector<Light>;
         Lights              m_lights;
+
+        AssetsSystem* m_assetSystem;
 
     };
 

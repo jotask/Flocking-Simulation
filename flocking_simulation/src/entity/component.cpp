@@ -11,6 +11,11 @@ namespace aiko
 
     }
 
+    void Component::init()
+    {
+
+    }
+
     void Component::update(const TimeStep& step)
     {
 

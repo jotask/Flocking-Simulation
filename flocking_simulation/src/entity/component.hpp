@@ -12,8 +12,11 @@ namespace aiko
     public:
         Component(Entity& owner);
 
-        void update(const TimeStep& step);
-        void render();
+        virtual ~Component() = default;
+
+        virtual void init();
+        virtual void update(const TimeStep& step);
+        virtual void render();
 
     protected:
         Entity& m_owner;

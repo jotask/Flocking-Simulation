@@ -220,20 +220,20 @@ namespace aiko
             system->connect(systemConnector, moduleConnector);
         }
 
-        // Init module resources
-        if (initResources<Systems>(m_systems) == false)
-        {
-            std::cout << "Unable to initialize system resources" << std::endl;
-            h3dutDumpMessages();
-            return false;
-        }
-
         // init all systems
         for (auto& system : m_systems)
         {
             system->preInit();
             system->init();
             system->postInit();
+        }
+
+        // Init systems resources
+        if (initResources<Systems>(m_systems) == false)
+        {
+            std::cout << "Unable to initialize system resources" << std::endl;
+            h3dutDumpMessages();
+            return false;
         }
 
         return true;

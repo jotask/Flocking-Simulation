@@ -2,12 +2,15 @@
 
 #include "Horde3D.h"
 
+#include <string>
+
 namespace aiko
 {
 
     class Asset
     {
     public:
+
         /*
         Undefined       - An undefined resource, returned by getResourceType in case of error
         SceneGraph      - Scene graph subtree stored in XML format
@@ -21,17 +24,20 @@ namespace aiko
         Pipeline        - Rendering pipeline
         ComputeBuffer   - Buffer with arbitrary data that can be accessed and modified by compute shaders
         */
+        using Types = H3DResTypes::List;
+        using AssetId = H3DRes;
 
-        const enum class Type
-        {
-            DEFAULT
-        };
+        Asset(const char* path, const Types type);
 
-        Asset(const Type type = Type::DEFAULT);
+        void                load();
+
+        const H3DRes        getId() const;
 
     private:
+        const Types             m_type;
+        const std::string       m_path;
 
-        const Type m_type;
+        AssetId                 m_resource;
 
     };
 

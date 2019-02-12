@@ -17,7 +17,16 @@ namespace flocking
 
     void FlockingSimulation::init()
     {
-        std::cout << "Hello" << std::endl;
+
+        static constexpr const auto numberOfFlocks = 1;
+
+        for (auto i = 0u; i < numberOfFlocks ; i++)
+        {
+            auto flock = Flock();
+            flock.init();
+            m_flocks.push_back(flock);
+        }
+
     }
 
 }

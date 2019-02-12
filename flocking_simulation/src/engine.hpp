@@ -22,7 +22,6 @@ namespace aiko
     class Renderer;
     class Camera;
     class Input;
-    class Application;
 
     class Engine
     {
@@ -30,7 +29,7 @@ namespace aiko
         using Modules   = std::vector<std::shared_ptr<Module>>;
         using Systems   = std::vector<std::shared_ptr<System>>;
 
-        Engine          (Application& app, Config cfg);
+        Engine          (Config cfg);
         virtual         ~Engine();
 
         int             run();
@@ -50,8 +49,6 @@ namespace aiko
         // This is because we are receving event in stat methogs
         friend class Display;
 
-        Engine()        = delete;
-
         bool            init();
         bool            initModules();
         bool            initSystems();
@@ -65,8 +62,6 @@ namespace aiko
 
         // Events
         void            onWindowClose(Event& ent);
-
-        Application&    m_app;
 
         Config          m_config;
 

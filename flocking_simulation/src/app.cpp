@@ -5,7 +5,7 @@
 namespace aiko
 {
     Application::Application(aiko::Config& cfg)
-        : m_engine(std::make_unique<Engine>(*this, cfg))
+        : m_engine(std::make_unique<Engine>(cfg))
     {
 
     }

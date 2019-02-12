@@ -6,6 +6,7 @@
 #include "display.hpp"
 #include "renderer.hpp"
 #include "camera.hpp"
+#include "log.hpp"
 #include "input.hpp"
 #include "world_system.hpp"
 #include "module_connector.hpp"
@@ -171,6 +172,7 @@ namespace aiko
     {
 
         // Register modules
+        m_modules.push_back(std::make_shared<Log>(*this));
         m_modules.push_back(std::make_shared<Display>(*this));
         m_modules.push_back(std::make_shared<Renderer>(*this));
         m_modules.push_back(std::make_shared<Input>(*this));

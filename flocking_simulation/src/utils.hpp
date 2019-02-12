@@ -8,6 +8,9 @@
 #include <random>
 #include <cmath>
 
+# define PI           3.14159265358979323846
+# define PIf          3.14159265358979323846f
+
 namespace aiko
 {
 
@@ -42,9 +45,9 @@ namespace aiko
 
         static glm::vec3 getRandomVector()
         {
-            const auto x = getRandom(0.0f, 1.0f);
-            const auto y = getRandom(0.0f, 1.0f);
-            const auto z = getRandom(0.0f, 1.0f);
+            const auto x = getRandom(-1.0f, 1.0f);
+            const auto y = getRandom(-1.0f, 1.0f);
+            const auto z = getRandom(-1.0f, 1.0f);
             return { x, y, z };
         }
 

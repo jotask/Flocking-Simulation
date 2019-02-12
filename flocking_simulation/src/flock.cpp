@@ -9,7 +9,7 @@ namespace flocking
 
     void Flock::init()
     {
-        auto mesh = std::make_unique<aiko::Mesh>(*this);
+        auto mesh = std::make_shared<aiko::Mesh>(*this);
         m_components.push_back(std::move(mesh));
 
         mesh->init();

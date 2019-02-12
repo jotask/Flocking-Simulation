@@ -13,6 +13,7 @@
 #include "event/event_dispatcher.hpp"
 #include "entity/entity_system.hpp"
 #include "asset_system.hpp"
+#include "app.hpp"
 
 // Horde
 #include "Horde3DUtils.h"
@@ -23,8 +24,9 @@
 namespace aiko
 {
 
-    Engine::Engine(Config cfg)
-        : m_initialized(false)
+    Engine::Engine(Application& app, Config cfg)
+        : m_app(app)
+        , m_initialized(false)
         , m_running(false)
         , m_resourcePath(cfg.getResourcePath())
         , m_config(cfg)
@@ -283,6 +285,9 @@ namespace aiko
         m_display->simulateResizeEvent();
 
         h3dutDumpMessages();
+
+        m_app.init();
+
         return true;
     }
 

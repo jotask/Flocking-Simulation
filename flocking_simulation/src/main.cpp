@@ -8,11 +8,9 @@ int main(int argc, char** argv)
 
     aiko::Config::initGlobalConfig(argc, argv);
 
-    flocking::FlockingSimulation app(*aiko::Config::it());
+    flocking::FlockingSimulation simulation;
 
-    const auto exitStatus = app.run();
-
-    std::cout << exitStatus << std::endl;
+    simulation.run();
 
     return EXIT_SUCCESS;
 

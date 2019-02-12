@@ -9,10 +9,15 @@
 namespace flocking
 {
 
-    FlockingSimulation::FlockingSimulation(aiko::Config cfg)
-        : Engine(cfg)
+    FlockingSimulation::FlockingSimulation(aiko::Config& cfg)
+        : Application(cfg)
     {
 
+    }
+
+    void FlockingSimulation::init()
+    {
+        std::cout << "Hello" << std::endl;
     }
 
 }

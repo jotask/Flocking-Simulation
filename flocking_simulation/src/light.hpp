@@ -4,16 +4,25 @@
 
 #include "Horde3D.h"
 
+#include "glm.hpp"
+
 namespace aiko
 {
 
     class Light
     {
     public:
+
+        using Color = glm::vec3;
+
         Light();
         virtual ~Light() = default;
 
         Transform&  getTranform();
+
+        void randomise();
+
+        Color& getColor();
 
     private:
 
@@ -25,6 +34,10 @@ namespace aiko
 
         Transform   m_transform;
         H3DNode     m_lightId;
+
+        float       m_radius;
+        float       m_fov;
+        Color       m_color;
 
     };
 

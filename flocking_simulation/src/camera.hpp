@@ -5,6 +5,8 @@
 
 #include "Horde3D.h"
 
+#include "glm.hpp"
+
 namespace aiko
 {
 
@@ -37,14 +39,20 @@ namespace aiko
 
         Transform           m_transform;
 
+        void                lookAt(const glm::vec3 target = glm::vec3());
+
     private:
 
         void                onMouseMove(Event&);
         void                onWindowResize(Event&);
         void                resizeViewport(const int width, const int height);
 
+        // Movement
+        void                controlCameraMovement(const TimeStep & step);
+        void                orbitCameraMovement(const TimeStep & step);
 
         H3DNode             m_cam;
+        H3DNode             m_anchor;
 
         // Systems
         Renderer*           m_renderer;

@@ -10,7 +10,7 @@
 #include "config.hpp"
 #include "module.hpp"
 #include "system.hpp"
-#include "timestep.hpp" // Added in header to avoid include this file in any inheritance.
+#include "timestep.hpp"
 
 #include "event/engine_events.hpp"
 

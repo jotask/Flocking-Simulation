@@ -16,8 +16,7 @@ namespace flocking
         virtual ~Flock() = default;
 
         virtual void init();
-        virtual void update(const aiko::TimeStep & step) {};
-        virtual void render() {};
+        virtual void update(const aiko::TimeStep & step);
 
         virtual void    updateTransform();
 

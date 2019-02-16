@@ -75,7 +75,7 @@ namespace aiko
 #endif
 
         // spawnRandomPlanets();
-        //spawnRandomPlanets();
+        spawnRandomPlanets();
 
         // Add light source
         spawnRandomLights();

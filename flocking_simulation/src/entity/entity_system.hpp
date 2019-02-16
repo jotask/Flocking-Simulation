@@ -37,15 +37,14 @@ namespace aiko
         template<class T>
         static T* createEntity()
         {
-            // static_assert(std::is_base_of<Entity, T>::value, "T is not base class off Entity");
-            // auto* entitySystem = EntitySystem::it();
-            // auto it = std::make_unique<T>();
-            // entitySystem->m_entities.emplace_back(std::move(it));
-            // auto& tmp = EntitySystem::it()->m_entities.back();
-            // auto* ptr = tmp.get();
-            // auto* result = dynamic_cast<T*>(ptr);
-            // return result;
-            return nullptr;
+            static_assert(std::is_base_of<Entity, T>::value, "T is not base class off Entity");
+            auto* entitySystem = EntitySystem::it();
+            auto it = std::make_unique<T>();
+            entitySystem->m_entities.push_back(std::move(it));
+            auto& tmp = EntitySystem::it()->m_entities.back();
+            auto* ptr = tmp.get();
+            auto* result = dynamic_cast<T*>(ptr);
+            return result;
         }
     };
 

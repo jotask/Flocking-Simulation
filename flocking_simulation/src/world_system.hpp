@@ -7,7 +7,10 @@
 
 #include "Horde3D.h"
 
+#include <glm.hpp>
+
 #include <vector>
+#include <array>
 
 namespace aiko
 {
@@ -31,6 +34,15 @@ namespace aiko
         void                registerLight(Light light);
 
     private:
+
+        glm::vec3           getRandomPositionInWorld();
+
+        using WorldSize     = std::array<glm::vec3, 2>;
+
+        WorldSize           m_worldSize;
+
+        void                spawnRandomPlanets();
+        void                spawnRandomLights();
 
         using Resources     = std::vector<H3DRes>;
         Resources           m_resources;

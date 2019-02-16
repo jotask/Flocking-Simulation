@@ -14,13 +14,14 @@ namespace aiko
     {
     public:
 
-        Entity() = default;
-        ~Entity() = default;
+        Entity();
+        virtual ~Entity() = default;
 
-        void update(const TimeStep & step);
-        void render();
+        virtual void update(const TimeStep & step);
+        virtual void render();
 
         Transform m_transform;
+
         using Components = std::vector<std::shared_ptr<Component>>;
         Components m_components;
     };

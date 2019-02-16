@@ -16,7 +16,7 @@ namespace aiko
 
     }
 
-    void Mesh::updateHordes()
+    void Mesh::updateTransform()
     {
         const auto p = m_owner.m_transform.m_position;
         const auto r = m_owner.m_transform.m_rotation;

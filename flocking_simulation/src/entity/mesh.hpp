@@ -14,7 +14,7 @@ namespace aiko
     public:
         Mesh(Entity& owner);
 
-        virtual void updateHordes() override;
+        virtual void updateTransform() override;
         virtual void init() override;
 
     private:

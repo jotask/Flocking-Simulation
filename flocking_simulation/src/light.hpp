@@ -24,6 +24,8 @@ namespace aiko
 
         Color& getColor();
 
+        void updateLight();
+
     private:
 
         // TODO

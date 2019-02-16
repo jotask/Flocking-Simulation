@@ -14,6 +14,7 @@ namespace aiko
         for (auto& e : m_entities)
         {
             e->update(step);
+            e->updateTransform();
         }
     }
 

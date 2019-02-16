@@ -3,11 +3,13 @@
 #include "module_connector.hpp"
 #include "system_connector.hpp"
 
+#include "entity/entity_system.hpp"
 #include "asset_system.hpp"
+#include "planet.hpp"
 
 #include "utils.hpp"
 
-// #define SPEHERE_ON_CENTER_WORLD
+#define SPEHERE_ON_CENTER_WORLD
 
 namespace aiko
 {
@@ -35,13 +37,13 @@ namespace aiko
     void WorldSystem::spawnRandomPlanets()
     {
 
-        static constexpr const auto numberPlanets = 200;
+        static constexpr const auto numberPlanets = 10;
 
         for (auto i = 0; i < numberPlanets; i++)
         {
-            auto p = getRandomPositionInWorld();
-            H3DNode planet = h3dAddNodes(H3DRootNode, m_resources[0]);
-            h3dSetNodeTransform(planet, p.x, p.y, p.z, 0, 0, 0, 1, 1, 1);
+            auto* p = EntitySystem::it()->createEntity<Planet>(m_resources[0]);
+            auto pos = getRandomPositionInWorld();
+            p->m_transform.m_position = pos;
         }
 
     }
@@ -69,12 +71,15 @@ namespace aiko
 #ifdef SPEHERE_ON_CENTER_WORLD
 
         // Add environment
-        H3DNode env = h3dAddNodes(H3DRootNode, m_resources[0]);
         const auto scale = 0.5f;
-        h3dSetNodeTransform(env, 0, 0, 0, 0, 0, 0, scale, scale, scale);
+        auto* p = EntitySystem::it()->createEntity<Planet>(m_resources[0]);
+        auto pos = getRandomPositionInWorld();
+        p->m_transform.m_position = pos;
+        p->m_transform.m_scale = {scale, scale, scale};
+        p->updateTransform();
+
 #endif
 
-        // spawnRandomPlanets();
         spawnRandomPlanets();
 
         // Add light source

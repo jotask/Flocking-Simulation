@@ -1,7 +1,7 @@
 #include "mesh.hpp"
 
-#include "entity/entity.hpp"
-#include "asset_system.hpp"
+#include "entity.hpp"
+#include "../asset_system.hpp"
 
 #include "Horde3DUtils.h"
 
@@ -14,6 +14,14 @@ namespace aiko
         : Component(owner)
     {
 
+    }
+
+    void Mesh::updateHordes()
+    {
+        const auto p = m_owner.m_transform.m_position;
+        const auto r = m_owner.m_transform.m_rotation;
+        const auto s = m_owner.m_transform.m_scale;
+        h3dSetNodeTransform(m_mesh, p.x, p.y, p.z, r.x, r.y, r.z, s.x, s.y, s.z);
     }
 
     void Mesh::init()
@@ -48,10 +56,7 @@ namespace aiko
 
         H3DRes geoRes = h3dutCreateGeometryRes("geoRes", 4, 6, posData.data(), indexData.data(), normalData.data(), 0, 0, uvData.data(), 0);
         H3DNode model = h3dAddModelNode(H3DRootNode, "DynGeoModelNode", geoRes);
-        H3DNode cube  = h3dAddMeshNode(model, "DynGeoMesh", matRes, 0, 6, 0, 3);
-
-        // Add environment
-        h3dSetNodeTransform(cube, 0, 0, 0, 0, 0, 0, 1, 1, 1);
+        m_mesh = h3dAddMeshNode(model, "DynGeoMesh", matRes, 0, 6, 0, 3);
 
     }
 

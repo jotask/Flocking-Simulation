@@ -1,4 +1,4 @@
-#include "camera.hpp"
+#include "camera_system.hpp"
 
 #include "engine.hpp"
 #include "renderer.hpp"
@@ -12,7 +12,7 @@
 namespace aiko
 {
 
-    Camera::Camera(float fov, float nearPlane, float farPlane)
+    CameraSystem::CameraSystem(float fov, float nearPlane, float farPlane)
         :   System()
         , m_transform()
         , m_cam(0)
@@ -25,13 +25,13 @@ namespace aiko
 
     }
 
-    void Camera::connect(SystemConnector& systemConnectar, ModuleConnector& moduleConnector)
+    void CameraSystem::connect(SystemConnector& systemConnectar, ModuleConnector& moduleConnector)
     {
         m_renderer = moduleConnector.findModule<Renderer>();
         m_input = moduleConnector.findModule<Input>();
     }
 
-    void Camera::init()
+    void CameraSystem::init()
     {
 
         if (true)
@@ -69,7 +69,7 @@ namespace aiko
 
     }
 
-    void Camera::update(const TimeStep & step)
+    void CameraSystem::update(const TimeStep & step)
     {
         orbitCameraMovement(step);
     }
@@ -84,27 +84,27 @@ namespace aiko
         m_transform.applyTransform(m_cam);
     }
 
-    float Camera::getFOV() const
+    float CameraSystem::getFOV() const
     {
         return m_fov;
     }
 
-    float Camera::getNearPlane() const
+    float CameraSystem::getNearPlane() const
     {
         return m_nearPlane;
     }
 
-    float Camera::getFarPlane() const
+    float CameraSystem::getFarPlane() const
     {
         return m_farPlane;
     }
 
-    const H3DNode& Camera::getCamera() const
+    const H3DNode& CameraSystem::getCamera() const
     {
         return m_cam;
     }
 
-    void Camera::lookAt(const glm::vec3 target)
+    void CameraSystem::lookAt(const glm::vec3 target)
     {
 
         auto& position = m_transform.m_position;
@@ -119,7 +119,7 @@ namespace aiko
 
     }
 
-    void Camera::onMouseMove(Event& event)
+    void CameraSystem::onMouseMove(Event& event)
     {
         const auto& msg = static_cast<const OnMouseMoveEvent&>(event);
 
@@ -135,13 +135,13 @@ namespace aiko
         // if (m_transform.m_rotation.x < -90) m_transform.m_rotation.x = -90;
     }
 
-    void Camera::onWindowResize(Event & event)
+    void CameraSystem::onWindowResize(Event & event)
     {
         const auto& msg = static_cast<const WindowResizeEvent&>(event);
         resizeViewport(msg.width, msg.height);
     }
 
-    void Camera::resizeViewport(const int width, const int height)
+    void CameraSystem::resizeViewport(const int width, const int height)
     {
         // Resize viewport
         h3dSetNodeParamI(m_cam, H3DCamera::ViewportXI, 0);
@@ -153,7 +153,7 @@ namespace aiko
         h3dSetupCameraView(m_cam, m_fov, (float)width / height, m_nearPlane, m_farPlane);
     }
 
-    void Camera::controlCameraMovement(const TimeStep & step)
+    void CameraSystem::controlCameraMovement(const TimeStep & step)
     {
         #define H3D_RAD2DEG 57.324840764f
         #define H3D_DEG2RAD  0.017453292f
@@ -196,13 +196,13 @@ namespace aiko
         }
     }
 
-    void Camera::orbitCameraMovement(const TimeStep & step)
+    void CameraSystem::orbitCameraMovement(const TimeStep & step)
     {
 
         static auto dt = 0.0f;
         dt += step.getDelta();
 
-        static const auto radius = 50.0f;
+        static const auto radius = 5.0f;
 
         auto& p = m_transform.m_position;
 

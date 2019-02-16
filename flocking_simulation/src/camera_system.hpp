@@ -16,13 +16,13 @@ namespace aiko
 
     class Event;
 
-    class Camera : public System
+    class CameraSystem : public System
     {
     public:
 
-        Camera(float fov = 45.0f, float near_plane = 0.1f, float far_plane = 1000.0f);
+        CameraSystem(float fov = 45.0f, float near_plane = 0.1f, float far_plane = 1000.0f);
 
-        virtual ~Camera() = default;
+        virtual ~CameraSystem() = default;
 
         void                connect(SystemConnector& systemConnectar, ModuleConnector& moduleConnector) override;
         void                init() override;

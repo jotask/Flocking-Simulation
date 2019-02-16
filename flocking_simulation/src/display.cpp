@@ -62,11 +62,13 @@ namespace aiko
             glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
         }
         
-        if (m_winFullScreen) {
+        if (m_winFullScreen)
+        {
             const GLFWvidmode* mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
             m_winHandle = glfwCreateWindow(mode->width, mode->height, m_winTitle.c_str(), glfwGetPrimaryMonitor(), NULL);
         }
-        else {
+        else
+        {
             m_winHandle = glfwCreateWindow(m_initWinWidth, m_initWinHeight, m_winTitle.c_str(), NULL, NULL);
         }
         

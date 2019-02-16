@@ -64,8 +64,8 @@ namespace aiko
 
         h3dSetNodeParamI(m_cam, H3DCamera::OccCullingI, 1);
 
-        EventSystem::it().bind<WindowResizeEvent>(this, &Camera::onWindowResize);
-        EventSystem::it().bind<OnMouseMoveEvent>(this, &Camera::onMouseMove);
+        EventSystem::it().bind<WindowResizeEvent>(this, &CameraSystem::onWindowResize);
+        EventSystem::it().bind<OnMouseMoveEvent>(this, &CameraSystem::onMouseMove);
 
     }
 
@@ -74,7 +74,7 @@ namespace aiko
         orbitCameraMovement(step);
     }
 
-    void Camera::postUpdate(const TimeStep & step)
+    void CameraSystem::postUpdate(const TimeStep & step)
     {
         // TODO
         // Think of a better way to do this

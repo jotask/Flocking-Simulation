@@ -5,7 +5,7 @@
 #include "config.hpp"
 #include "display.hpp"
 #include "renderer.hpp"
-#include "camera.hpp"
+#include "camera_system.hpp"
 #include "log.hpp"
 #include "input.hpp"
 #include "world_system.hpp"
@@ -207,7 +207,7 @@ namespace aiko
     {
         // Register systems
         m_systems.push_back(std::make_shared<EntitySystem>());
-        m_systems.push_back(std::make_shared<Camera>());
+        m_systems.push_back(std::make_shared<CameraSystem>());
         m_systems.push_back(std::make_shared<WorldSystem>());
         m_systems.push_back(std::make_shared<AssetsSystem>());
 
@@ -327,7 +327,7 @@ namespace aiko
 
     void Engine::connectSystems(SystemConnector& systemConnector)
     {
-        m_camera = systemConnector.findSystem<Camera>();
+        m_camera = systemConnector.findSystem<CameraSystem>();
     }
 
 }

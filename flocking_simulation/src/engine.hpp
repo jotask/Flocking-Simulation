@@ -20,7 +20,7 @@ namespace aiko
     class ModuleConnector;
     class Display;
     class Renderer;
-    class Camera;
+    class CameraSystem;
     class Input;
     class Application;
 
@@ -79,7 +79,7 @@ namespace aiko
         // systems
         Display*        m_display;
         Renderer*       m_renderer;
-        Camera*         m_camera;
+        CameraSystem*   m_camera;
         Input*          m_input;
 
     };

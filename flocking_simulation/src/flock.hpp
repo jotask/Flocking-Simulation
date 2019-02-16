@@ -12,12 +12,14 @@ namespace flocking
     {
     public:
 
-        Flock() = default;
+        Flock();
         virtual ~Flock() = default;
 
         virtual void init();
         virtual void update(const aiko::TimeStep & step) {};
         virtual void render() {};
+
+        void randomise();
 
     };
 

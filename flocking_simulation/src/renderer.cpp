@@ -22,7 +22,7 @@ namespace aiko
         return m_renderInterface;
     }
 
-    H3DRes Renderer::getPipelineRes()
+    const H3DRes Renderer::getPipelineRes() const
     {
         return m_pipelineRes[m_curPipeline];
     }

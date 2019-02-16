@@ -21,7 +21,7 @@ namespace aiko
 
         int getRenderInterface() const;
 
-        H3DRes getPipelineRes();
+        const H3DRes getPipelineRes() const;
 
         bool init();
         bool initResources() final override;

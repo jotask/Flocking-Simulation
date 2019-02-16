@@ -20,6 +20,11 @@ namespace flocking
         m_components.push_back(std::move(mesh));
     }
 
+    void Flock::updateTransform()
+    {
+
+    }
+
     void Flock::randomise()
     {
         // m_transform.m_position = aiko::utils::getRandom();

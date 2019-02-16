@@ -19,6 +19,8 @@ namespace flocking
         virtual void update(const aiko::TimeStep & step) {};
         virtual void render() {};
 
+        virtual void    updateTransform();
+
         void randomise();
 
     };

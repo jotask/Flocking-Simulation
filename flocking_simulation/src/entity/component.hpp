@@ -22,7 +22,7 @@ namespace aiko
         virtual void update(const TimeStep& step);
         virtual void render();
 
-        virtual void updateTransform();
+        virtual void updateTransform() {};
 
     protected:
 

@@ -26,9 +26,4 @@ namespace aiko
 
     }
 
-    void Component::updateTransform()
-    {
-
-    }
-
 }

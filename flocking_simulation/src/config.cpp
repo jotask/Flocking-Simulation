@@ -33,7 +33,7 @@ namespace aiko
     Config::Config(const std::string path, const bool checkForBenchmarkOption)
         : m_ResourcePath(utils::extractResourcePath(path.c_str()))
         , m_CheckForBenchmarkOption(checkForBenchmarkOption)
-        , m_isFullscreen(true)
+        , m_isFullscreen(false)
     {
 
     }

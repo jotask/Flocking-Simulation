@@ -53,7 +53,6 @@ namespace aiko
         if (found != m_map.end())
         {
             found->second.emplace_back(fun);
-            std::cout << "bind ok" << std::endl;
         }
         else
         {

@@ -12,7 +12,7 @@ namespace aiko
         for (auto& c : m_components)
         {
             c->update(step);
-            c->updateHordes();
+            c->updateTransform();
         }
     }
 

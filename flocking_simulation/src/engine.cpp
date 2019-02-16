@@ -149,8 +149,8 @@ namespace aiko
         }
 
         // Render scene
-        const auto cam = m_camera->getCamera();
-        h3dRender(cam);
+        const auto& cam = m_camera->getCamera();
+        h3dRender(cam.getCameraId());
     }
 
     void Engine::finalize()

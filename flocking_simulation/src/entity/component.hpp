@@ -2,6 +2,10 @@
 
 #include "../timestep.hpp"
 
+#include "Horde3D.h"
+
+#include <vector>
+
 namespace aiko
 {
 
@@ -18,8 +22,16 @@ namespace aiko
         virtual void update(const TimeStep& step);
         virtual void render();
 
+        virtual void updateHordes();
+
     protected:
+
+
         Entity& m_owner;
+
+        using Hordes    = std::vector<H3DNode>;
+        Hordes          m_ordes;
+
     };
 
 }

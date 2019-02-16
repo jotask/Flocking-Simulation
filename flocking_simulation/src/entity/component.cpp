@@ -26,4 +26,9 @@ namespace aiko
 
     }
 
+    void Component::updateHordes()
+    {
+
+    }
+
 }

@@ -17,13 +17,16 @@ namespace aiko
         Entity();
         virtual ~Entity() = default;
 
-        virtual void update(const TimeStep & step);
-        virtual void render();
+        virtual void    update(const TimeStep & step);
+        virtual void    render();
 
-        Transform m_transform;
+        virtual void    updateTransform() = 0;
+
+        Transform       m_transform;
 
         using Components = std::vector<std::shared_ptr<Component>>;
-        Components m_components;
+        Components      m_components;
+
     };
 
 }

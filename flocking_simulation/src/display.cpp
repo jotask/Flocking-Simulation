@@ -8,6 +8,8 @@
 #include "event/engine_events.hpp"
 #include "event/event_dispatcher.hpp"
 
+#include "config.hpp"
+
 #include "Horde3D.h"
 #include "Horde3DUtils.h"
 
@@ -28,7 +30,7 @@ namespace aiko
         , m_initWinHeight(eng.getConfig().getWindowHeight())
         , m_winSampleCount(0)
         , m_sampleCount(0)
-        , m_winFullScreen(false)
+        , m_winFullScreen(eng.getConfig().isFullScreen())
         , m_prevMx(0)
         , m_prevMy(0)
         , m_winShowCursor(true)

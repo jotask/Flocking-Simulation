@@ -17,30 +17,12 @@ namespace aiko
     namespace utils
     {
 
-        template<class T>
-        static T getRandom(const T min, const T max)
+        static float getRandom(const float min = 0.0f, const float max = 1.0f)
         {
-            return min + (static_cast<int>(getRandom<T>()) % static_cast<int>(max - min + 1));
-        }
-
-        template<class T>
-        static T getRandom()
-        {
-            // Seed with a real random value, if available
-            std::random_device r;
-
-            // Choose a random mean between 1 and 6
-            std::default_random_engine e1(r());
-            std::uniform_int_distribution<int> uniform_dist(1, 6);
-            const auto mean = uniform_dist(e1);
-
-            // Generate a normal distribution around that mean
-            std::seed_seq seed2{ r(), r(), r(), r(), r(), r(), r(), r() };
-            std::mt19937 e2(seed2);
-            std::normal_distribution<> normal_dist(mean, 2);
-
-            return static_cast<T>(normal_dist(e2));
-
+            std::random_device rd;
+            std::mt19937 mt(rd());
+            std::uniform_real_distribution<float> dist(min, max);
+            return dist(mt);
         }
 
         static glm::vec3 getRandomVector()

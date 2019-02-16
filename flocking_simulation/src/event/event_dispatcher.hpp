@@ -58,10 +58,7 @@ namespace aiko
         {
             auto pair = std::make_pair<const char*, Callbacks>(evnt.getId(), { fun });
             m_map.insert(pair);
-        
-            std::cout << "bind ok" << std::endl;
         }
-        std::cout << "bind ok" << std::endl;
     }
 
     template<class Evnt>
@@ -78,17 +75,12 @@ namespace aiko
         if (found != m_map.end())
         {
             found->second.emplace_back(std::bind(mf, object, std::placeholders::_1));
-            std::cout << "bind ok" << std::endl;
         }
         else
         {
             auto pair = std::make_pair<const char*, Callbacks>(evnt.getId(), { std::bind(mf, object, std::placeholders::_1) });
             m_map.insert(pair);
-        
-            std::cout << "bind ok" << std::endl;
         }
-        std::cout << "bind ok" << std::endl;
-
     }
 
     template<class Evnt, class T>
@@ -106,8 +98,6 @@ namespace aiko
             return;
         }
         m_callbacks.erase(it);
-        std::cout << "unbind ok" << std::endl;
-
     }
 
     template<class Evnt>

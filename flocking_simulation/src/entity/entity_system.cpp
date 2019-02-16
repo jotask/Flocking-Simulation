@@ -4,15 +4,16 @@ namespace aiko
 {
 
     EntitySystem::EntitySystem()
+        : SingletonCtr()
     {
-
+        SingletonCtr::setPtr(this);
     }
 
     void EntitySystem::update(const TimeStep & step)
     {
         for (auto& e : m_entities)
         {
-            e.update(step);
+            e->update(step);
         }
     }
 
@@ -20,7 +21,7 @@ namespace aiko
     {
         for (auto& e : m_entities)
         {
-            e.render();
+            e->render();
         }
     }
 

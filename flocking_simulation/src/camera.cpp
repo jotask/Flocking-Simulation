@@ -81,6 +81,7 @@ namespace aiko
     void Camera::update(const TimeStep & step)
     {
         orbitCameraMovement(step);
+        m_transform.applyTransform(m_cam);
     }
 
     float Camera::getFOV() const

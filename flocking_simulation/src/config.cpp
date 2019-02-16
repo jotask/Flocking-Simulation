@@ -24,7 +24,7 @@ namespace aiko
 
     }
 
-    Config::GlobalConfig Config::it()
+    Config::GlobalConfig& Config::it()
     {
         assert(m_instance != nullptr);
         return m_instance;
@@ -33,6 +33,7 @@ namespace aiko
     Config::Config(const std::string path, const bool checkForBenchmarkOption)
         : m_ResourcePath(utils::extractResourcePath(path.c_str()))
         , m_CheckForBenchmarkOption(checkForBenchmarkOption)
+        , m_isFullscreen(true)
     {
 
     }

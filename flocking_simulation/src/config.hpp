@@ -15,7 +15,7 @@ namespace aiko
         using GlobalConfig = aiko::AikoPtr<Config>;
 
         static void initGlobalConfig(int argc, char** argv);
-        static GlobalConfig it();
+        static GlobalConfig& it();
 
         Config(const std::string path, const bool checkForBenchmarkOption);
         ~Config() = default;
@@ -27,10 +27,12 @@ namespace aiko
         int getWindowHeight() { return 576; };
 
         bool getCheckForBenchmarkOption();
-        bool isFullScreen() { return false; };
+        bool isFullScreen() { return m_isFullscreen; };
         bool showCursorInScreen() { return false; };
 
         H3DRenderDevice::List   getRenderInterface() { return H3DRenderDevice::OpenGL4; };
+
+        bool m_isFullscreen;
 
     private:
 

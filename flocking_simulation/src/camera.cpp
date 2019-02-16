@@ -149,7 +149,7 @@ namespace aiko
         static auto dt = 0.0f;
         dt += step.getDelta();
 
-        static const auto radius = 5.0f;
+        static const auto radius = 20.0f;
 
         auto& p = m_transform.m_position;
 
@@ -178,6 +178,11 @@ namespace aiko
     const H3DNode Camera::getCameraId() const
     {
         return m_cam;
+    }
+
+    void Camera::updateTransform()
+    {
+        m_transform.applyTransform(m_cam);
     }
 
 }

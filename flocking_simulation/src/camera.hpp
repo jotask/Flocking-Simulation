@@ -34,6 +34,8 @@ namespace aiko
 
         const H3DNode       getCameraId() const;
 
+        virtual void    updateTransform();
+
     private:
 
         // Movement

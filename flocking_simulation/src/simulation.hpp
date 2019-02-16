@@ -8,7 +8,7 @@
 
 #include <sstream>
 #include <vector>
-
+#include <memory>
 namespace flocking
 {
 
@@ -21,8 +21,9 @@ namespace flocking
 
     private:
 
-        std::vector<Flock> m_flocks;
-
+        // TODO change to shared ptr
+        using Flocks        = std::vector<Flock*>;
+        Flocks              m_flocks;
     };
 
 }

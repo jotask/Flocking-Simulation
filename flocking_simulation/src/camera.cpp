@@ -13,6 +13,8 @@
 #include "event/event_dispatcher.hpp"
 #include "utils.hpp"
 
+#include "GLFW/glfw3.h"
+
 #include <memory>
 
 namespace aiko
@@ -149,7 +151,7 @@ namespace aiko
         static auto dt = 0.0f;
         dt += step.getDelta();
 
-        static const auto radius = 20.0f;
+        static const auto radius = 5.0f;
 
         auto& p = m_transform.m_position;
 

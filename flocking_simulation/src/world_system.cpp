@@ -9,7 +9,7 @@
 
 #include "utils.hpp"
 
-#define SPEHERE_ON_CENTER_WORLD
+// #define SPEHERE_ON_CENTER_WORLD
 
 namespace aiko
 {
@@ -41,7 +41,7 @@ namespace aiko
 
         for (auto i = 0; i < numberPlanets; i++)
         {
-            auto* p = EntitySystem::it()->createEntity<Planet>(m_resources[0]);
+            auto* p = EntitySystem::it()->createEntity<Planet>();
             auto pos = getRandomPositionInWorld();
             p->m_transform.m_position = pos;
         }
@@ -71,19 +71,25 @@ namespace aiko
 #ifdef SPEHERE_ON_CENTER_WORLD
 
         // Add environment
-        const auto scale = 0.5f;
+        const auto scale = 1.0f;
         auto* p = EntitySystem::it()->createEntity<Planet>(m_resources[0]);
-        auto pos = getRandomPositionInWorld();
-        p->m_transform.m_position = pos;
+        p->m_transform.m_position = {0,0,0};
         p->m_transform.m_scale = {scale, scale, scale};
         p->updateTransform();
 
 #endif
 
-        spawnRandomPlanets();
+        Light light;
+        light.getTranform().m_position = { 5,0,0 };
+        // light.randomise();
+        light.m_radius = 1000;
+        light.updateLight();
+        registerLight(light);
+
+        //spawnRandomPlanets();
 
         // Add light source
-        spawnRandomLights();
+        //spawnRandomLights();
 
     }
 
@@ -92,13 +98,9 @@ namespace aiko
 
         // TODO Improve
 
-        // Environment
-        const auto envRes = m_assetSystem->loadResource("models/sphere/sphere.scene.xml", H3DResTypes::SceneGraph);
-
         // Shader for deferred shading
         const auto lightMatRes = m_assetSystem->loadResource("materials/light.material.xml", H3DResTypes::Material);
 
-        m_resources.push_back(envRes);
         m_resources.push_back(lightMatRes);
 
         return true;
@@ -112,7 +114,7 @@ namespace aiko
 
     void WorldSystem::registerLight(Light light)
     {
-        light.createLight(m_resources[1]);
+        light.createLight(m_resources[0]);
         m_lights.push_back(light);
     }
 

@@ -17,7 +17,9 @@ namespace aiko
         virtual void updateTransform() override;
         virtual void init() override;
 
-    private:
+        H3DNode getId();
+
+    protected:
 
         H3DNode m_mesh;
 

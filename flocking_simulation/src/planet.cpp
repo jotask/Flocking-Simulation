@@ -7,10 +7,10 @@
 namespace aiko
 {
 
-    Planet::Planet(H3DRes res)
+    Planet::Planet()
         : m_id()
     {
-        m_id = h3dAddNodes(H3DRootNode, res);
+
     }
 
     void Planet::init()

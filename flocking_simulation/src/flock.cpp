@@ -1,7 +1,9 @@
 #include "flock.hpp"
 
-#include "entity/mesh.hpp"
+#include "entity/planet_mesh.hpp"
 #include "utils.hpp"
+
+#include "asset_system.hpp"
 
 #include <memory>
 
@@ -15,11 +17,11 @@ namespace flocking
 
     void Flock::init()
     {
-        auto mesh = std::make_shared<aiko::Mesh>(*this);
+        auto mesh = std::make_shared<aiko::PlanetMesh>(*this);
         mesh->init();
         m_components.push_back(std::move(mesh));
 
-        m_transform.m_scale = { 10.0f, 10.0f, 10.0f };
+        // m_transform.m_scale = { 10.0f, 10.0f, 10.0f };
     }
 
     void Flock::update(const aiko::TimeStep & step)

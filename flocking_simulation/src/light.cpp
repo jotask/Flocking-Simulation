@@ -23,8 +23,6 @@ namespace aiko
     void Light::randomise()
     {
 
-        m_transform.applyTransform(m_lightId);
-
         const auto r = utils::getRandom();
         const auto g = utils::getRandom();
         const auto b = utils::getRandom();
@@ -33,7 +31,7 @@ namespace aiko
         m_color.y = g;
         m_color.z = b;
 
-        m_radius = utils::getRandom(10.0f, 30.0f);
+        // m_radius = utils::getRandom(10.0f, 30.0f);
 
         h3dSetNodeParamF(m_lightId, H3DLight::FovF,    0, m_fov);
         h3dSetNodeParamF(m_lightId, H3DLight::RadiusF, 0, m_radius);

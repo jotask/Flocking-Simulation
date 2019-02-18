@@ -14,14 +14,12 @@ namespace aiko
     {
     public:
 
-        Planet(H3DRes res);
+        Planet();
         virtual ~Planet() = default;
 
         virtual void init();
         virtual void update(const TimeStep & step);
         virtual void render() {};
-
-        H3DNode getId() const;
 
         void moveOnCenter();
 

@@ -4,7 +4,7 @@
 #include "entity/entity.hpp"
 
 #include "Horde3D.h"
-#include "glm.hpp"
+#include "glm/glm.hpp"
 
 #include <memory>
 

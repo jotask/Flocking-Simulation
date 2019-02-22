@@ -13,7 +13,7 @@
 #include "Horde3D.h"
 #include "Horde3DUtils.h"
 
-#include "glm.hpp"
+#include "glm/glm.hpp"
 
 #include <string>
 #include <iostream>

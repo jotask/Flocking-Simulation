@@ -7,7 +7,7 @@
 
 #include "Horde3D.h"
 
-#include <glm.hpp>
+#include <glm/glm.hpp>
 
 #include <vector>
 #include <array>

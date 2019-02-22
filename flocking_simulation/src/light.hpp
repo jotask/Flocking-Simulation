@@ -4,7 +4,7 @@
 
 #include "Horde3D.h"
 
-#include "glm.hpp"
+#include "glm/glm.hpp"
 
 namespace aiko
 {

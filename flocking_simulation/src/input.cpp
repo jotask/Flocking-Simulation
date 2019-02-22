@@ -6,8 +6,6 @@
 #include "event/engine_events.hpp"
 #include "event/event_dispatcher.hpp"
 
-#include  "glm.hpp"
-
 namespace aiko
 {
 

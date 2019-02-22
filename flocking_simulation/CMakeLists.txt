@@ -21,6 +21,8 @@ IF(GLFW_FOUND)
 
     include_directories(../submodules/Horde3D/Horde3D/Bindings/C++)
 
+    include_directories(src)
+
     include_directories(${GLFW_INCLUDE_DIR})
 
     include_directories(${GLM_INCLUDE_DIRS})

@@ -11,10 +11,13 @@ message(STATUS "GLM included at ${GLM_INCLUDE_DIR}")
 
 IF(GLFW_FOUND)
 
-    file(GLOB_RECURSE FlockingSimulation_SRC
-    "src/*.hpp"
-    "src/*.cpp"
-    )
+    file(GLOB_RECURSE FlockingSimulation_SRC *.cpp* *.h* *.hpp*)
+    foreach(_source IN ITEMS ${FlockingSimulation_SRC})
+        get_filename_component(_source_path "${_source}" PATH)
+        string(REPLACE "${CMAKE_SOURCE_DIR}" "" _group_path "${_source_path}")
+        string(REPLACE "/" "\\" _group_path "${_group_path}")
+        source_group("${_group_path}" FILES "${_source}")
+    endforeach()
 
     include_directories(../submodules/Horde3D/Horde3D/Bindings/C++)
 

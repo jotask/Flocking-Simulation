@@ -1,11 +1,12 @@
 [submodule "submodules/Horde3D"]
-	path = submodules/Horde3D
-	url = https://github.com/horde3d/Horde3D.git
-
+    path = submodules/Horde3D
+    url = https://github.com/horde3d/Horde3D.git
+    ignore = untracked
+    
 [submodule "submodules/glm"]
-	path = submodules/glm
-	url = https://github.com/g-truc/glm.git
+    path = submodules/glm
+    url = https://github.com/g-truc/glm.git
 
 [submodule "submodules/imgui"]
-	path = submodules/imgui
-	url = https://github.com/ocornut/imgui.git
+    path = submodules/imgui
+    url = https://github.com/ocornut/imgui.git

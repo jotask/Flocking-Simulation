@@ -35,6 +35,8 @@ IF(GLFW_FOUND)
 
     add_dependencies(FlockingSimulation project_glfw)
 
+    target_compile_features(FlockingSimulation PRIVATE cxx_std_17)
+
     # set the project as console application
     set_target_properties(FlockingSimulation PROPERTIES LINK_FLAGS_DEBUG "/SUBSYSTEM:CONSOLE")
     set_target_properties(FlockingSimulation PROPERTIES COMPILE_DEFINITIONS_DEBUG "_CONSOLE")
@@ -42,7 +44,8 @@ IF(GLFW_FOUND)
     set_target_properties(FlockingSimulation PROPERTIES COMPILE_DEFINITIONS_RELWITHDEBINFO "_CONSOLE")
     set_target_properties(FlockingSimulation PROPERTIES LINK_FLAGS_RELEASE "/SUBSYSTEM:WINDOWS")
     set_target_properties(FlockingSimulation PROPERTIES LINK_FLAGS_MINSIZEREL "/SUBSYSTEM:WINDOWS")
-    
+
+
 ENDIF(GLFW_FOUND)
 
 

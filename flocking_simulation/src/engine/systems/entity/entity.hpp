@@ -22,6 +22,8 @@ namespace aiko
 
         virtual void    updateTransform() = 0;
 
+        Transform&      getTransform();
+
         Transform       m_transform;
 
         using Components = std::vector<std::shared_ptr<Component>>;

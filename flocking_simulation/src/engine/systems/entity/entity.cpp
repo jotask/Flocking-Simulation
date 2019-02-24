@@ -24,4 +24,9 @@ namespace aiko
         }
     }
 
+    Transform & Entity::getTransform()
+    {
+        return m_transform;
+    }
+
 }

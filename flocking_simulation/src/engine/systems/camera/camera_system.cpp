@@ -1,6 +1,6 @@
 #include "camera_system.hpp"
 
-#include "engine/systems/entity/camera.hpp"
+#include "engine/systems/camera/camera.hpp"
 #include "engine/engine.hpp"
 #include "engine/modules/renderer_module.hpp"
 #include "engine/modules/input_module.hpp"

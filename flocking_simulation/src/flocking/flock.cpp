@@ -2,7 +2,7 @@
 
 #include "engine/systems/entity/planet_mesh.hpp"
 #include "engine/shared/utils.hpp"
-#include "engine/systems/asset_system.hpp"
+#include "engine/systems/assets/asset_system.hpp"
 
 #include <memory>
 

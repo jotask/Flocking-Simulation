@@ -5,15 +5,16 @@
 #include "engine/config/config.hpp"
 #include "engine/modules/display_module.hpp"
 #include "engine/modules/renderer_module.hpp"
-#include "engine/systems/camera_system.hpp"
+#include "engine/systems/camera/camera_system.hpp"
 #include "engine/modules/log_module.hpp"
 #include "engine/modules/input_module.hpp"
 #include "engine/systems/world_system.hpp"
+#include "engine/systems/particles/particle_system.hpp"
 #include "engine/modules/module_connector.hpp"
 #include "engine/systems/system_connector.hpp"
 #include "engine/event/event_dispatcher.hpp"
 #include "engine/systems/entity/entity_system.hpp"
-#include "engine/systems/asset_system.hpp"
+#include "engine/systems/assets/asset_system.hpp"
 #include "engine/app/app.hpp"
 
 // Horde
@@ -210,6 +211,7 @@ namespace aiko
         m_systems.push_back(std::make_shared<CameraSystem>());
         m_systems.push_back(std::make_shared<WorldSystem>());
         m_systems.push_back(std::make_shared<AssetsSystem>());
+        m_systems.push_back(std::make_shared<ParticleSystem>());
 
         // call all modules to systems to the other stystems required
         ModuleConnector moduleConnector(m_modules);

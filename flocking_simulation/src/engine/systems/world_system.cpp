@@ -5,7 +5,7 @@
 #include "engine/shared/utils.hpp"
 #include "engine/systems/entity/planet.hpp"
 #include "engine/systems/entity/entity_system.hpp"
-#include "engine/systems/asset_system.hpp"
+#include "engine/systems/assets/asset_system.hpp"
 
 // #define SPEHERE_ON_CENTER_WORLD
 

@@ -1,7 +1,7 @@
 #include "custom_mesh.hpp"
 
 #include "engine/systems/entity/entity.hpp"
-#include "engine/systems/asset_system.hpp"
+#include "engine/systems/assets/asset_system.hpp"
 
 #include "Horde3DUtils.h"
 

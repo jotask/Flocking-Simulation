@@ -2,7 +2,7 @@
 
 #include "engine/systems/system.hpp"
 #include "engine/shared/types.hpp"
-#include "engine/systems/asset.hpp"
+#include "engine/systems/assets/asset.hpp"
 
 #include "Horde3D.h"
 

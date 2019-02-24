@@ -2,7 +2,7 @@
 
 #include "engine/shared/transform.hpp"
 #include "engine/systems/system.hpp"
-#include "engine/systems/entity/camera.hpp"
+#include "engine/systems/camera/camera.hpp"
 
 #include <vector>
 
